@@ -25,7 +25,7 @@ router.put('/:id', async (req, res) => {
     const newEntry = { category, content }
 
     try {
-        const entry = await EntryModel.findByIdAndUpdate(req.params.id, newEntry, { returnDocument: 'after'})
+        const entry = await EntryModel.findByIdAndUpdate(req.params.id, newEntry, { returnDocument: 'after'}).populate('category', 'name')
         if (entry) {
             res.send(entry)
         } else {
